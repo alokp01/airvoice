@@ -26,7 +26,11 @@ export function useWebRTC({ onStatusChange, onStats }) {
   // ── WebSocket ────────────────────────────────────────────────────────
   const connectWS = useCallback((token) => {
     const proto = location.protocol === "https:" ? "wss" : "ws";
-    const url = `${proto}://${location.host}/ws/signal/${token ? `?token=${token}` : ""}`;
+    const apiBase = import.meta.env.VITE_API_BASE_URL || "";
+const wsBase = apiBase
+  ? apiBase.replace("https://", "wss://").replace("http://", "ws://")
+  : `${proto}://${location.host}`;
+const url = `${wsBase}/ws/signal/${token ? `?token=${token}` : ""}`;
     const ws = new WebSocket(url);
     wsRef.current = ws;
 
