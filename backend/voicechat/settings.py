@@ -58,7 +58,7 @@ ASGI_APPLICATION = "voicechat.asgi.application"
 # PostgreSQL
 DATABASES = {
     "default": {
-        "ENGINE": "django.db.backends.postgresql",
+        "ENGINE": "django.db.backends.postgresql_psycopg2",
         "NAME": config("DB_NAME", default="voicechat"),
         "USER": config("DB_USER", default="postgres"),
         "PASSWORD": config("DB_PASSWORD", default="postgres"),
